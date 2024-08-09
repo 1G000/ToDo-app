@@ -16,24 +16,38 @@ export default {
       })
       data.id++
       data.newTodo = ''
+      saveTodosToLocalStorage();
     }
 
     function removeTodo(index) {
       data.todos.splice(index, 1)
+      saveTodosToLocalStorage();
     }
 
     function markDoneToggle(todo) {
       todo.isDone = !todo.isDone
+      saveTodosToLocalStorage();
     }
 
     function markAllDoneToggle() {
       data.todos.every((todo) => todo.isDone)
         ? data.todos.forEach((todo) => (todo.isDone = false))
         : data.todos.forEach((todo) => (todo.isDone = true))
+        saveTodosToLocalStorage();
     }
 
     function clearTodoList() {
       data.todos = []
+      saveTodosToLocalStorage();
+    }
+
+    const storedTodos = localStorage.getItem('todos');
+    if (storedTodos) {
+      data.todos = JSON.parse(storedTodos);
+    }
+
+    function saveTodosToLocalStorage() {
+      localStorage.setItem('todos', JSON.stringify(data.todos));
     }
 
     return {
@@ -42,7 +56,7 @@ export default {
       markDoneToggle,
       removeTodo,
       markAllDoneToggle,
-      clearTodoList
+      clearTodoList,
     }
   }
 }
