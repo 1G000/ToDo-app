@@ -1,36 +1,20 @@
 <script setup>
-import TodoApp from './components/TodoApp.vue';
+import TodoApp from './components/TodoApp.vue'
 </script>
 
 <template>
   <TodoApp />
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<style>
+body {
+  display: flex;
+  justify-content: center;
+  max-width: 1900px;
 }
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+#app {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 </style>
