@@ -5,7 +5,6 @@ export default {
   setup() {
     const data = reactive({
       newTodo: '',
-      id: 0,
       todos: []
     })
 
@@ -14,7 +13,6 @@ export default {
         value: data.newTodo,
         isDone: false
       })
-      data.id++
       data.newTodo = ''
       saveTodosToLocalStorage()
     }
@@ -80,7 +78,13 @@ export default {
           <span :class="['todo-text', { done: todo.isDone }]">{{ todo.value }}</span>
           <div class="todo-right-side">
             <label :for="index" class="checkbox-label">
-              <input class="checkbox" type="checkbox" :id="index" v-model="todo.isDone" />
+              <input
+                class="checkbox"
+                type="checkbox"
+                :id="index"
+                :checked="todo.isDone"
+                @change="markDoneToggle(todo)"
+              />
               <span class="checkbox-view">
                 <svg
                   class="checkbox-icon"
